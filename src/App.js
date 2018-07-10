@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LocationList from './components/LocationList';
-import ForecastExtended from './components/ForecastExtended';
+import LocationListContainer from './containers/LocationListContainer';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
+
 import './App.css';
 
 const cities = [
@@ -8,29 +9,17 @@ const cities = [
 	"Buenos Aires,ar",
 	"Colombia,col"
 ];
-class App extends Component {
-	constructor(props) {
-		super();
-		this.state = { city: null };
-	}
 
-	handleSelectionLocation = city => {
-		this.setState({ city })
-		console.log(`handleSelectionLocation ${city}`);
-	}
+class App extends Component {
   	render() {
-		const { city } = this.state; 
     	return (
       		<div className="App">
 			  	<div className="col-50">
-					<LocationList cities={ cities } onSelectedLocation={ this.handleSelectionLocation }/>
+					<LocationListContainer cities={ cities } />
 				</div>
 				<div className="col-50">
 					<div className="detail">
-						{ 
-							city &&
-							<ForecastExtended city={ city }/>
-						}
+						<ForecastExtendedContainer />
 					</div>
 				</div>
       		</div>
